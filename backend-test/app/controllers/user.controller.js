@@ -1,12 +1,18 @@
 const utils = require('../utils');
-const {DataUtil} = utils;
+const {UserUtil} = utils;
 
-const getData = async (req, res) => {  
-  const data = await DataUtil.getTestData();
-  res.json({ success : true, data: data});
+const login = async (req, res) => {  
+  const data = await UserUtil.login(req.body.values);
+  res.json(data);
+};
+
+const register = async (req, res) => {  
+  const data = await UserUtil.register(req.body.values);
+  res.json(data);
 };
 
 module.exports = {
-  getData,
+  login,
+  register,
 }
 

@@ -1,5 +1,5 @@
-const DataUtil = require('./dataUtil');
+const UserUtil = require('./userUtil');
 
 module.exports = {
-	DataUtil,
+	UserUtil,
 }
