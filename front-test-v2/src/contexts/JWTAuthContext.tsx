@@ -24,7 +24,7 @@ interface AuthState {
 	newMessage?: any
     isInitial: boolean
     isAuthenticated: boolean
-    user: User | null
+    user: any | null
 }
 
 interface AuthContextValue extends AuthState {
@@ -76,7 +76,7 @@ const initialAuthState: AuthState = {
 	token: getData('token'),
 	isAuthenticated: false,
 	isInitial: false,
-	user: getData('user') ? JSON.parse(getData('user')) : null
+	user: getData('user'),
 }
 
 const reducer = (state: AuthState, action: Action): AuthState => {
@@ -193,7 +193,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 		const data = response.data
 		if(data.success){
 			enqueueSnackbar(data.message, {
-				variant: 'success'
+				variant: 'success',
+				anchorOrigin: {
+					vertical: 'top',
+					horizontal: 'right',
+				},
 			})
 			await saveData('token', data.token)
 			await saveData('user', data.user)
@@ -209,7 +213,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 			router.push('/main')
 		}else{
 			enqueueSnackbar(data.message, {
-				variant: 'error'
+				variant: 'error',
+				anchorOrigin: {
+					vertical: 'top',
+					horizontal: 'right',
+				},
 			})
 		}
 	};
@@ -228,19 +236,27 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 		const data = response.data
 		if(data.success){
 			enqueueSnackbar(data.message, {
-				variant: 'success'
+				variant: 'success',
+				anchorOrigin: {
+					vertical: 'top',
+					horizontal: 'right',
+				},
 			})
 			router.push('/login')
 		}else{
 			enqueueSnackbar(data.message, {
-				variant: 'error'
+				variant: 'error',
+				anchorOrigin: {
+					vertical: 'top',
+					horizontal: 'right',
+				},
 			})
 		}
 	};
 
 	const sendMessage = async (message: string) => {
 		const data = {
-			id: state.user,
+			userId: state.user,
 			message: message,
 			date: moment().format('HH:mm')
 		}

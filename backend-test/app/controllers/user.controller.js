@@ -1,5 +1,5 @@
 const utils = require('../utils');
-const {UserUtil} = utils;
+const {UserUtil, MessageUtil} = utils;
 
 const login = async (req, res) => {  
   const data = await UserUtil.login(req.body.values);
@@ -11,8 +11,20 @@ const register = async (req, res) => {
   res.json(data);
 };
 
+const userList = async (req, res) => {  
+  const data = await UserUtil.userList(req.user);
+  res.json(data);
+};
+
+const messageList = async (req, res) => {  
+  const data = await MessageUtil.messageList(req.user);
+  res.json(data);
+};
+
 module.exports = {
   login,
   register,
+  userList,
+  messageList,
 }
 

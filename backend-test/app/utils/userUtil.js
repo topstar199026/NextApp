@@ -2,6 +2,7 @@ const jwt  = require('jsonwebtoken');
 const errorHandler = require('../helpers/dbErrorHandler');
 const constants = require('../config/constant');
 const User = require('../models/user.model');
+const Message = require('../models/message.model');
 
 const login = async (values) => {
     try {
@@ -63,7 +64,12 @@ const register = async (values) => {
 	
 }
 
+const userList = async (values) => {
+    console.log(values)
+}
+
 module.exports = {
     login,
     register,
+    userList,
 };

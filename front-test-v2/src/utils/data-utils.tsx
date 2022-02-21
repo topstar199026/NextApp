@@ -7,15 +7,11 @@ export function save(key: string,val: any) {
 	return null
 }
 
-export function get(key: string) {   
+export function get(key: any) {   
 	try{
-		return localStorage.getItem(key)
-		let getData = localStorage.getItem(key)
-		let val
-		// if(key === 'user') 
-		// 	val = getData ? JSON.parse(getData) : null
+		let val = localStorage.getItem(key)
+		val = JSON.parse(val || '')
 		if(key === 'token')axios.defaults.headers.common['Authorization'] = `Bearer ${val}`
-
 		return val
 	}catch(e){
 		return null

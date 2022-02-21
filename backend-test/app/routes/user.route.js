@@ -13,6 +13,12 @@ router.route('/api/user/login')
 router.route('/api/user/register')
   .post(userCtrl.register)
 
+router.route('/api/user/list')
+  .post(auth, userCtrl.userList)
+
+router.route('/api/message/list')
+  .post(auth, userCtrl.messageList)
+
 module.exports = router ;
 
 
